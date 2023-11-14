@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /notification-service
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='${KAFKA_KEY}' password='${KAFKA_SECRET}';
+        mechanism: PLAIN
+      session:
+        timeout:
+          ms: 45000
+    consumer:
+      client-id: notification_service_consumer
+      group-id: notification_service_group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+logging:
+  level:
+    root: info
+
+application:
+  notification:
+    mail:
+      host: ${MAIL_HOST}
+      port: ${MAIL_PORT}
+      username: ${MAIL_USERNAME}
+      password: ${MAIL_PASSWORD}
+      subject: "MockPay Transaction Updates"
+      protocol: smtp
+      smtp-auth: true
+      starttls-enable: true
+      debugging: true
+    currency-type: INR
+    smallest-denomination-factor: 100
