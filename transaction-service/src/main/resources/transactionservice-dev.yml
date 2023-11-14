@@ -1,0 +1,66 @@
+server:
+  port: 7070
+  servlet:
+    context-path: /transaction-service
+
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_DB_HOST}:${MYSQL_DB_PORT}/${MYSQL_DB_NAME}?createDatabaseIfNotExist=true&sslmode=require
+    username: ${MYSQL_DB_USER}
+    password: ${MYSQL_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='${KAFKA_KEY}' password='${KAFKA_SECRET}';
+        mechanism: PLAIN
+      session:
+        timeout:
+          ms: 45000
+    producer:
+      client-id: transaction_service_producer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      client-id: transaction_service_consumer
+      group-id: transaction_service_group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+logging:
+  level:
+    root: info
+
+redis:
+  host:
+    url: ${REDIS_HOST_URL}
+    port: ${REDIS_HOST_PORT}
+  auth:
+    secret: ${REDIS_HOST_SECRET}
+  expire-time: 600
+
+application:
+  transaction:
+    currency-type: INR
+    smallest-denomination-factor: 100
+  identity-service:
+    url: ${IDENTITY_SERVICE_HOST}
+    block-timeout: 30
+  security:
+    service:
+      user-name: ${SERVICE_USER_NAME}
+      email: ${SERVICE_USER_EMAIL}
+      secret: ${SERVICE_USER_SECRET}
