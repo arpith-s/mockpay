@@ -1,4 +1,4 @@
-name: 🔍 Sonar Cloud Analysis
+name: 🛠️ Scan Deploy Pipeline
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
 
 jobs:
   build-identity-service:
-    name: 🏗️ Build and analyze identity-service
+    name: 🏗️ Build and Analyze identity-service
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_IDENTITY_SERVICE }}
@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🌐 Set up JDK
+      - name: ☕ Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -43,17 +43,17 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: 🚀 Build with Maven and analyze identity-service with SonarCloud
+      - name: 🚀 Build and Analyze with Maven & SonarCloud
         run: |
           cd identity-service
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mockpay_identity-service
 
-      - name: ✔️ Check Quality Gate Status for identity-service
+      - name: ✅ Check Quality Gate Status
         if: always()
         run: bash ./.github/scripts/check_quality_gate.sh "identity-service" "mockpay_identity-service" "${{ env.SONAR_TOKEN }}"
 
   build-wallet-service:
-    name: 🏗️ Build and analyze wallet-service
+    name: 🏗️ Build and Analyze wallet-service
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_WALLET_SERVICE }}
@@ -63,7 +63,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🌐 Set up JDK
+      - name: ☕ Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -83,17 +83,17 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: 🚀 Build with Maven and analyze wallet-service with SonarCloud
+      - name: 🚀 Build and Analyze with Maven & SonarCloud
         run: |
           cd wallet-service
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mockpay_wallet-service
 
-      - name: ✔️ Check Quality Gate Status for wallet-service
+      - name: ✅ Check Quality Gate Status
         if: always()
         run: bash ./.github/scripts/check_quality_gate.sh "wallet-service" "mockpay_wallet-service" "${{ env.SONAR_TOKEN }}"
 
   build-transaction-service:
-    name: 🏗️ Build and analyze transaction-service
+    name: 🏗️ Build and Analyze transaction-service
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_TRANSACTION_SERVICE }}
@@ -103,7 +103,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🌐 Set up JDK
+      - name: ☕ Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -123,17 +123,17 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: 🚀 Build with Maven and analyze transaction-service with SonarCloud
+      - name: 🚀 Build and Analyze with Maven & SonarCloud
         run: |
           cd transaction-service
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mockpay_transaction-service
 
-      - name: ✔️ Check Quality Gate Status for transaction-service
+      - name: ✅ Check Quality Gate Status
         if: always()
         run: bash ./.github/scripts/check_quality_gate.sh "transaction-service" "mockpay_transaction-service" "${{ env.SONAR_TOKEN }}"
 
   build-notification-service:
-    name: 🏗️ Build and analyze notification-service
+    name: 🏗️ Build and Analyze notification-service
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_NOTIFICATION_SERVICE }}
@@ -143,7 +143,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🌐 Set up JDK
+      - name: ☕ Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -163,11 +163,47 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: 🚀 Build with Maven and analyze notification-service with SonarCloud
+      - name: 🚀 Build and Analyze with Maven & SonarCloud
         run: |
           cd notification-service
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=mockpay_notification-service
 
-      - name: ✔️ Check Quality Gate Status for notification-service
+      - name: ✅ Check Quality Gate Status
         if: always()
         run: bash ./.github/scripts/check_quality_gate.sh "notification-service" "mockpay_notification-service" "${{ env.SONAR_TOKEN }}"
+
+  deploy-identity-service:
+    name: 🚢 Deploy identity-service to Heroku
+    needs: [ build-identity-service ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔍 Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📦 Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: m2
+
+      - name: 🏗️ Build identity-service
+        run: |
+          cd identity-service
+          mvn clean package -DskipTests
+
+      - name: 🚀 Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "identity-service-mockpay"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: "identity-service"
