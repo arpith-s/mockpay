@@ -1,4 +1,4 @@
-package org.arpith.mockpay.notificationservice;
+package com.arpith.mockpay.notificationservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

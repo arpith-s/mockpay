@@ -1,4 +1,4 @@
-package org.arpith.mockpay.notificationservice.service;
+package com.arpith.mockpay.notificationservice.service;
 
 public interface NotificationService {
     void notifyTransactionCompleted(String message);

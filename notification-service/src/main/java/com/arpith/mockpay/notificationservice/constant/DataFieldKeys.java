@@ -1,4 +1,4 @@
-package org.arpith.mockpay.notificationservice.constant;
+package com.arpith.mockpay.notificationservice.constant;
 
 import lombok.experimental.UtilityClass;
 
