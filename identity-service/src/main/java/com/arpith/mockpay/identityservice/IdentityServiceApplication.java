@@ -6,6 +6,8 @@ import com.arpith.mockpay.identityservice.model.SecuredUser;
 import com.arpith.mockpay.identityservice.repository.AppUserRepository;
 import com.arpith.mockpay.identityservice.service.SecuredUserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +16,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @RequiredArgsConstructor
 public class IdentityServiceApplication implements CommandLineRunner {
+    private static final Logger LOG = LoggerFactory.getLogger(IdentityServiceApplication.class);
+
     private final AppUserRepository appUserRepository;
     private final SecuredUserService securedUserService;
 
@@ -33,18 +37,25 @@ public class IdentityServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        var appUser = AppUser.builder()
-                .name(serviceUserName)
-                .email(serviceUserEmail)
-                .securedUser(
-                        SecuredUser.builder()
-                                .username(serviceUserEmail)
-                                .password(serviceUserSecret)
-                                .build())
-                .build();
-        var securedUser = appUser.getSecuredUser();
-        securedUserService.create(securedUser, Enum.valueOf(UserType.class, UserType.SERVICE.name()));
-        appUser.setSecuredUser(securedUser);
-        appUserRepository.save(appUser);
+        LOG.info("Creating default service user");
+        boolean userExists = appUserRepository.findByEmail(serviceUserEmail).isPresent();
+        if (!userExists) {
+            var appUser = AppUser.builder()
+                    .name(serviceUserName)
+                    .email(serviceUserEmail)
+                    .securedUser(
+                            SecuredUser.builder()
+                                    .username(serviceUserEmail)
+                                    .password(serviceUserSecret)
+                                    .build())
+                    .build();
+
+            var securedUser = appUser.getSecuredUser();
+            securedUserService.create(securedUser, Enum.valueOf(UserType.class, UserType.SERVICE.name()));
+            appUser.setSecuredUser(securedUser);
+
+            appUserRepository.save(appUser);
+        }
     }
+
 }
