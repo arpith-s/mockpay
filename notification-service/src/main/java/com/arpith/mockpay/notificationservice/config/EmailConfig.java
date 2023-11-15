@@ -1,4 +1,4 @@
-package org.arpith.mockpay.notificationservice.config;
+package com.arpith.mockpay.notificationservice.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
