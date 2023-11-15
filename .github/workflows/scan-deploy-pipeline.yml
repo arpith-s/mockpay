@@ -207,3 +207,111 @@ jobs:
           heroku_app_name: "identity-service-mockpay"
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: "identity-service"
+
+  deploy-wallet-service:
+    name: 🚢 Deploy wallet-service to Heroku
+    needs: [ build-wallet-service ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔍 Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📦 Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: m2
+
+      - name: 🏗️ Build wallet-service
+        run: |
+          cd wallet-service
+          mvn clean package -DskipTests
+
+      - name: 🚀 Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "wallet-service-mockpay"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: "wallet-service"
+
+  deploy-transaction-service:
+    name: 🚢 Deploy transaction-service to Heroku
+    needs: [ build-transaction-service ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔍 Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📦 Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: m2
+
+      - name: 🏗️ Build transaction-service
+        run: |
+          cd transaction-service
+          mvn clean package -DskipTests
+
+      - name: 🚀 Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "transaction-service-mockpay"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: "transaction-service"
+
+  deploy-notification-service:
+    name: 🚢 Deploy notification-service to Heroku
+    needs: [ build-notification-service ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔍 Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📦 Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: m2
+
+      - name: 🏗️ Build notification-service
+        run: |
+          cd notification-service
+          mvn clean package -DskipTests
+
+      - name: 🚀 Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "notification-service-mockpay"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: "notification-service"
