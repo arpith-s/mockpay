@@ -27,7 +27,8 @@ public class Constant {
             Authorities.DELETE_USER.name(),
             Authorities.REQUEST_TOKEN.name(),
             Authorities.TRANSACT.name(),
-            Authorities.GET_TRANSACTIONS.name()
+            Authorities.GET_TRANSACTIONS.name(),
+            Authorities.GET_WALLET_BALANCE.name()
     );
 
     // BCrypt-Encoded strings starts with "$2a$"

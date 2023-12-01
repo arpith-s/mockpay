@@ -98,6 +98,11 @@ public class WalletServiceImpl implements WalletService {
         }
     }
 
+    @Override
+    public Wallet getWalletBalance(String username) {
+        return walletRepository.findByWalletId(username).orElse(null);
+    }
+
     private void publishEvent(Map<String, Object> payload, Status status, String topic) {
         LOG.info("Entering WalletService.publishEvent");
         payload.put(DataFieldKeys.STATUS, status.name());

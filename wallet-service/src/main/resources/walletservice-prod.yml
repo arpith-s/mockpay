@@ -54,5 +54,14 @@ redis:
 
 application:
   wallet:
+    smallest-denomination-factor: 100
     currency-type: INR
     start-balance: 10000
+  identity-service:
+    url: ${IDENTITY_SERVICE_HOST}
+    block-timeout: 30
+  security:
+    service:
+      user-name: ${SERVICE_USER_NAME}
+      email: ${SERVICE_USER_EMAIL}
+      secret: ${SERVICE_USER_SECRET}

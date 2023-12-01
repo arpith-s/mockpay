@@ -1,6 +1,8 @@
 package com.arpith.mockpay.walletservice.service;
 
+import com.arpith.mockpay.walletservice.dto.WalletResponse;
 import com.arpith.mockpay.walletservice.exception.UniqueWalletConstraintViolationException;
+import com.arpith.mockpay.walletservice.model.Wallet;
 import com.google.gson.JsonSyntaxException;
 
 public interface WalletService {
@@ -9,4 +11,6 @@ public interface WalletService {
     void updateWallets(String message) throws JsonSyntaxException;
 
     void deleteWallet(String message) throws JsonSyntaxException;
+
+    Wallet getWalletBalance(String username);
 }

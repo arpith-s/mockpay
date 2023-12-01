@@ -8,5 +8,6 @@ public enum Authorities {
     REQUEST_TOKEN,
     VERIFY_TOKEN,
     TRANSACT,
-    GET_TRANSACTIONS
+    GET_TRANSACTIONS,
+    GET_WALLET_BALANCE
 }
