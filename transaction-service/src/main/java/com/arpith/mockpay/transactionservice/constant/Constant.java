@@ -9,4 +9,5 @@ public class Constant {
     public final String DELIMITER_EMPTY = "";
     public final String DELIMITER_COLON = ":";
     public final String CONSUMER_GROUP_ID = "transaction_service_group";
+    public static final String TRANSACTION_CACHE_KEY_PREFIX = "transaction::";
 }

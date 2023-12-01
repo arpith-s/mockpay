@@ -5,6 +5,7 @@ import com.arpith.mockpay.walletservice.constant.DataFieldKeys;
 import com.arpith.mockpay.walletservice.constant.Topic;
 import com.arpith.mockpay.walletservice.enumeration.Status;
 import com.arpith.mockpay.walletservice.model.Wallet;
+import com.arpith.mockpay.walletservice.repository.WalletCacheRepository;
 import com.arpith.mockpay.walletservice.repository.WalletRepository;
 import com.arpith.mockpay.walletservice.service.WalletService;
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import java.util.Map;
 public class WalletServiceImpl implements WalletService {
     private static final Logger LOG = LoggerFactory.getLogger(WalletServiceImpl.class);
     private final WalletRepository walletRepository;
+    private final WalletCacheRepository walletCacheRepository;
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final Gson gson;
 
@@ -72,6 +74,7 @@ public class WalletServiceImpl implements WalletService {
             var receiverWallet = walletRepository.findByWalletId(receiverId);
 
             if (senderWallet.isPresent() && receiverWallet.isPresent() && senderWallet.get().getBalance() >= amount) {
+                walletCacheRepository.invalidateCache(senderWallet.get().getWalletId());
                 walletRepository.debitWallet(senderId, amount);
                 walletRepository.creditWallet(receiverId, amount);
                 publishEvent(transactionMap, Status.SUCCESSFUL, Topic.WALLET_UPDATED);
@@ -92,6 +95,7 @@ public class WalletServiceImpl implements WalletService {
         try {
             var email = (String) appUserMap.get(DataFieldKeys.EMAIL);
             walletRepository.deleteByWalletId(email);
+            walletCacheRepository.invalidateCache(email);
             publishEvent(appUserMap, Status.SUCCESSFUL, Topic.WALLET_DELETED);
         } catch (Exception e) {
             publishEvent(appUserMap, Status.FAILED, Topic.WALLET_DELETED);
@@ -100,7 +104,12 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Wallet getWalletBalance(String username) {
-        return walletRepository.findByWalletId(username).orElse(null);
+        LOG.info("Entering WalletService.getWalletBalance");
+        var cachedWallet = walletCacheRepository.get(username);
+        if (cachedWallet != null) return cachedWallet;
+        var wallet = walletRepository.findByWalletId(username).orElse(null);
+        walletCacheRepository.set(username, wallet);
+        return wallet;
     }
 
     private void publishEvent(Map<String, Object> payload, Status status, String topic) {

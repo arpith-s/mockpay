@@ -1,6 +1,6 @@
 package com.arpith.mockpay.transactionservice.repository;
 
-import com.arpith.mockpay.transactionservice.config.Constant;
+import com.arpith.mockpay.transactionservice.constant.Constant;
 import com.arpith.mockpay.transactionservice.model.Transaction;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
