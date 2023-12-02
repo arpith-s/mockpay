@@ -79,7 +79,7 @@ Explore the inner workings: a clear visual breakdown of the system's design and 
 </p>
 
 ## 📚 API Documentation
-
+- ### Postman API Collection - [link](postman-collection/mockpay.postman_collection.json)
 - ### Identity Service
     - **Deployed Base URL:** `https://identity-service-mockpay-c77097e48e00.herokuapp.com`
 

@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "b530bdaa-8944-4736-8fdb-f0718f45c19f",
+		"name": "mockpay",
+		"description": "Mock of a simple payments backend\n\n[mockpay reopsitory](https://github.com/arpith-s/mockpay)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10606300"
+	},
+	"item": [
+		{
+			"name": "sonar-cloud",
+			"item": [
+				{
+					"name": "get project status",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{sonarcloudkey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{sonarcloud}}/api/qualitygates/project_status?projectKey={{sonarcloudproject}}",
+							"host": [
+								"{{sonarcloud}}"
+							],
+							"path": [
+								"api",
+								"qualitygates",
+								"project_status"
+							],
+							"query": [
+								{
+									"key": "projectKey",
+									"value": "{{sonarcloudproject}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "identity-service",
+			"item": [
+				{
+					"name": "user onboarding",
+					"item": [
+						{
+							"name": "create user 01",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "username",
+										"value": "admin@mockpay.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "passowrd",
+										"value": "root",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"arpiths\",\r\n    \"email\": \"arpithmangalore07@gmail.com\",\r\n    \"password\": \"abcdef\",\r\n    \"mobile\": \"+919678549521\",\r\n    \"age\": 20,\r\n    \"userType\": \"CLIENT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/create",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create user 02",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "username",
+										"value": "admin@mockpay.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "passowrd",
+										"value": "root",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ankith\",\r\n    \"email\": \"arpith.santhosh016@gmail.com\",\r\n    \"password\": \"1234567\",\r\n    \"mobile\": \"+9196785495563\",\r\n    \"age\": 25,\r\n    \"userType\": \"CLIENT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/create",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create user 03",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "abcdef",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "arpith@gmail.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "username",
+										"value": "admin@mockpay.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "passowrd",
+										"value": "root",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"joy\",\r\n    \"email\": \"joy@gmail.com\",\r\n    \"password\": \"qsdgeg\",\r\n    \"mobile\": \"+9196785499514\",\r\n    \"age\": 30,\r\n    \"userType\": \"CLIENT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/create",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create user 04",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "username",
+										"value": "admin@mockpay.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "passowrd",
+										"value": "root",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"rahul\",\r\n    \"email\": \"rahul@gmail.com\",\r\n    \"password\": \"98765432344576\",\r\n    \"mobile\": \"+9196785493578\",\r\n    \"age\": 35,\r\n    \"userType\": \"CLIENT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/create",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get user 01",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE3MDE0NTM5NTMsImV4cCI6MTcwMTQ1NDAxM30.YHYcwqU4aHb2JtbEE9TuWkfwFaJxlDAPJikZRO_n0B0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/fetch",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"fetch"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update user 01",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE2OTk5ODUzOTQsImV4cCI6MTY5OTk4NTQ1NH0.v8Za-szEl_TCa6Vlsy1Dcd3lxqQkC8lmt9USuHD5sLs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "username",
+										"value": "admin@mockpay.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "passowrd",
+										"value": "root",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    // \"name\": \"arpithskumar\"\r\n    // \"email\": \"userOne@gmail.com\",\r\n    \"password\": \"525gh5h435hr45h6455qwdz\"\r\n    // \"authorities\": \"CREATE_USER,UPDATE_USER,DELETE_USER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/update",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user 01",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE3MDAwMzQ3NjQsImV4cCI6MTcwMDAzNDgyNH0._zSRjot2gyyjd73rEwMXCTpE6hgdWQXfwJDNOALZaTo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/user/delete",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"user",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "token",
+					"item": [
+						{
+							"name": "generate token",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "arpithmangalore07@gmail.com",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "abcdef",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/token/generate",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"token",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify token",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "root",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "service@mockpay.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"arpith@gmail.com\",\r\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE3MDE0NTM5NTMsImV4cCI6MTcwMTQ1NDAxM30.YHYcwqU4aHb2JtbEE9TuWkfwFaJxlDAPJikZRO_n0B0\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityservice}}/identity-service/v1/token/verify",
+									"host": [
+										"{{identityservice}}"
+									],
+									"path": [
+										"identity-service",
+										"v1",
+										"token",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "transaction-service",
+			"item": [
+				{
+					"name": "create transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE3MDE0NTM4NjYsImV4cCI6MTcwMTQ1MzkyNn0.Z3R1v2jlb9ypKFkwkn_60wyl9h8Eb705WyPicNToBzs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"receiverId\": \"arpith.santhosh016@gmail.com\",\r\n    \"amount\": 30,\r\n    \"reason\": \"Dinner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{transactionservice}}/identity-service/v1/token/generate",
+							"host": [
+								"{{transactionservice}}"
+							],
+							"path": [
+								"identity-service",
+								"v1",
+								"token",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch transactions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE3MDE0NTM4NjYsImV4cCI6MTcwMTQ1MzkyNn0.Z3R1v2jlb9ypKFkwkn_60wyl9h8Eb705WyPicNToBzs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"receiverId\": \"arpithmangalore07@gmail.com\",\r\n    \"amount\": 10,\r\n    \"reason\": \"Dinner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{transactionservice}}/transaction-service/v1/transaction/fetch",
+							"host": [
+								"{{transactionservice}}"
+							],
+							"path": [
+								"transaction-service",
+								"v1",
+								"transaction",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wallet-service",
+			"item": [
+				{
+					"name": "fetch wallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnBpdGhtYW5nYWxvcmUwN0BnbWFpbC5jb20iLCJpYXQiOjE3MDE0NTM4NjYsImV4cCI6MTcwMTQ1MzkyNn0.Z3R1v2jlb9ypKFkwkn_60wyl9h8Eb705WyPicNToBzs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{walletservice}}/wallet-service/v1/wallet/fetch",
+							"host": [
+								"{{walletservice}}"
+							],
+							"path": [
+								"wallet-service",
+								"v1",
+								"wallet",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "identityservice",
+			"value": "https://identity-service-mockpay-c77097e48e00.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "walletservice",
+			"value": "https://wallet-service-mockpay-0ec11f774315.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "transactionservice",
+			"value": "https://transaction-service-mockpay-7d36a97aa9b9.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "sonarcloud",
+			"value": "https://sonarcloud.io",
+			"type": "string"
+		},
+		{
+			"key": "sonarcloudkey",
+			"value": "c466d288496225b27581c96a14ad45619fca6801",
+			"type": "string"
+		},
+		{
+			"key": "sonarcloudproject",
+			"value": "mockpay_identity-service",
+			"type": "string"
+		}
+	]
+}
