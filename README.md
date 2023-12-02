@@ -39,16 +39,17 @@
   🚧 <sub>Work in Progress (WIP)</sub>
 </h4>
 
-
 ## 📜 Table of Contents
 - [Introduction](#-introduction)
 - [Architecture](#️-architecture)
-    - [System design and flow](#system-design-and-flow)
-    - [Authentication flow](#authentication-flow)
+    - [System Design and Flow](#system-design-and-flow)
+    - [Authentication Flow](#authentication-flow)
+    - [CI-CD Pipline](#ci-cd-pipline)
 - [API Documentation](#-api-documentation)
     - [Identity Service](#identity-service)
     - [Transaction Service](#transaction-service)
     - [Wallet Service](#wallet-service)
+- [Sonar Cloud Reports](#-sonar-cloud-reports)
 - [Built With](#-built-with)
 
 
@@ -59,18 +60,23 @@ Simplify your payment processing with our lightweight and user-friendly payments
 ## 🛠️ Architecture
 Explore the inner workings: a clear visual breakdown of the system's design and flow, simplifying the complexity behind MockPay's architecture.
 
-### System design and flow
+### System Design and Flow
 <p align="center">
   <img src="static/mockpay-system-design-and-flow.png" alt="Mockpay system-design-and-flow">
   <br>
 </p>
 
-### Authentication flow
+### Authentication Flow
 <p align="center">
   <img src="static/mockpay-authentication-flow.png" alt="Mockpay authentication-flow">
   <br>
 </p>
 
+### CI-CD Pipline
+<p align="center">
+  <img src="static/mockpay-cicd.png" alt="Mockpay ci-cd">
+  <br>
+</p>
 
 ## 📚 API Documentation
 
@@ -160,6 +166,11 @@ Explore the inner workings: a clear visual breakdown of the system's design and 
         - **Header:** `Authorization Bearer JWT Token`
         - **HTTP Method:** `GET`
 
+## 🔍 Sonar Cloud Reports
+* [Identity Service](https://sonarcloud.io/summary/new_code?id=mockpay_identity-service)
+* [Wallet Service](https://sonarcloud.io/summary/new_code?id=mockpay_wallet-service)
+* [Transaction Service](https://sonarcloud.io/summary/new_code?id=mockpay_transaction-service)
+* [Notification Service](https://sonarcloud.io/summary/new_code?id=mockpay_notification-service)
 
 ## 🔩 Built With
 * [Java](https://www.oracle.com/java/technologies/downloads/) - Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.
