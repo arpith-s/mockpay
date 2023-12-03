@@ -44,13 +44,15 @@
 - [Architecture](#️-architecture)
     - [System Design and Flow](#system-design-and-flow)
     - [Authentication Flow](#authentication-flow)
-    - [CI-CD Pipline](#ci-cd-pipline)
+    - [CI-CD Pipeline](#ci-cd-pipeline)
 - [API Documentation](#-api-documentation)
+    - [Postman API Collection](#postman-api-collection---link)
     - [Identity Service](#identity-service)
     - [Transaction Service](#transaction-service)
     - [Wallet Service](#wallet-service)
 - [Sonar Cloud Reports](#-sonar-cloud-reports)
 - [Built With](#-built-with)
+
 
 
 ## 🌟 Introduction
@@ -167,10 +169,10 @@ Explore the inner workings: a clear visual breakdown of the system's design and 
         - **HTTP Method:** `GET`
 
 ## 🔍 Sonar Cloud Reports
-* [Identity Service](https://sonarcloud.io/summary/new_code?id=mockpay_identity-service)
-* [Wallet Service](https://sonarcloud.io/summary/new_code?id=mockpay_wallet-service)
-* [Transaction Service](https://sonarcloud.io/summary/new_code?id=mockpay_transaction-service)
-* [Notification Service](https://sonarcloud.io/summary/new_code?id=mockpay_notification-service)
+* [[Identity Service]](https://sonarcloud.io/summary/new_code?id=mockpay_identity-service) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mockpay_identity-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mockpay_identity-service)
+* [[Wallet Service]](https://sonarcloud.io/summary/new_code?id=mockpay_wallet-service) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mockpay_wallet-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mockpay_wallet-service)
+* [[Transaction Service]](https://sonarcloud.io/summary/new_code?id=mockpay_transaction-service) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mockpay_transaction-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mockpay_transaction-service)
+* [[Notification Service]](https://sonarcloud.io/summary/new_code?id=mockpay_notification-service) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mockpay_notification-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mockpay_notification-service)
 
 ## 🔩 Built With
 * [Java](https://www.oracle.com/java/technologies/downloads/) - Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.
